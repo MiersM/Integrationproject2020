@@ -1,7 +1,7 @@
 # Integrationproject 2020
 Integration project 2020 HP
 
-To run:
+Before running:
 ```
 packagemanagerconsole> add-migration init
 ```
