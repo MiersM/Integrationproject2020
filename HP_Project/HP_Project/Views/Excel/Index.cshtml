@@ -1,0 +1,16 @@
+﻿@model String
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+<div class="text-center" style="margin-top: 6rem!important;">
+	<p class="text-success">@Model</p>
+
+	<form asp-action="Index" asp-controller="Excel" method="post" enctype="multipart/form-data">
+		<input type="file" name="name" value="" />
+		<button class="btn btn-primary">Upload Apollo</button>
+	</form>
+</div>

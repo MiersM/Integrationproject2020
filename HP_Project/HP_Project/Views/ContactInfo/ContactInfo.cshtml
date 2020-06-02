@@ -1,0 +1,158 @@
+﻿@model ContactInfoViewModel
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    ViewData["Title"] = "ContactInfo";
+
+    int updateId;
+    var applicationUser = await userManager.GetUserAsync(User);
+}
+
+<div class="container-fluid" style="width: 95em;" >
+    <div class="d-flex justify-content-around border mt-5" style="background-color: #fff;" >
+        <div class="table-responsive w-30 p-3">
+            <form asp-controller="ContactInfo" asp-action="ContactUpdate" method="post">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr style="background-color: lightgrey;">
+                            <th scope="col">First name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Mkt yes/no?</th>
+                            <th scope="col">HP contact</th>
+                            <th scope="col">CIO circle</th>
+                            <th scope="col">Innovation Forum</th>
+                            <th scope="col">TAC</th>
+                            <th scope="col">Postal Address</th>
+                            <th scope="col">Comments</th>
+                            <th scope="col">Edit / Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Contacts.Count; i++)
+                        {
+                            var mkt = @Model.Contacts[i].Mkt ? "yes" : "no";
+                            var innovationForum = @Model.Contacts[i].InnovationForum ? "yes" : "no";
+                            var tac = @Model.Contacts[i].TAC ? "yes" : "no";
+
+                            <tr id="contactRowUpdate_@Model.Contacts[i].Id" style="display: none">
+
+                                <td scope="row"><input asp-for="@Model.Contacts[i].FirstName" /></td>
+                                <td><input asp-for="@Model.Contacts[i].LastName" /></td>
+                                <td><input asp-for="@Model.Contacts[i].Role" /></td>
+                                <td><input asp-for="@Model.Contacts[i].Email" /></td>
+                                <td><input asp-for="@Model.Contacts[i].Phone" /></td>
+                                <td>
+                                    <div class="checkbox">
+                                        <input asp-for="@Model.Contacts[i].Mkt" />
+                                    </div>
+                                </td>
+                                <td><input asp-for="@Model.Contacts[i].ApplicationUser.UserName" disabled /></td>
+                                <td><input asp-for="@Model.Contacts[i].CIOCircle" /></td>
+                                <td>
+                                    <div class="checkbox">
+                                        <input asp-for="@Model.Contacts[i].InnovationForum" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <input asp-for="@Model.Contacts[i].TAC" />
+                                    </div>
+                                </td>
+                                <td><input asp-for="@Model.Contacts[i].PostalAddress" /></td>
+                                <td><input asp-for="@Model.Contacts[i].Comments" /></td>
+                                <td>
+                                    <input asp-for="@Model.Contacts[i].Id" hidden />
+                                    <input asp-for="@Model.Contacts[i].ApplicationUserId" hidden />
+                                    <button type="submit" onclick="toggleContactUpdateRow('@Model.Contacts[i].Id', false)" class="btn btn-primary my-btn">Update</button>
+                                    <a href="#" onclick="toggleContactUpdateRow('@Model.Contacts[i].Id', false)" class="btn btn-secondary my-btn">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr id="contactRowRead_@Model.Contacts[i].Id">
+                                <td scope="row">@Model.Contacts[i].FirstName</td>
+                                <td>@Model.Contacts[i].LastName</td>
+                                <td>@Model.Contacts[i].Role</td>
+                                <td>@Model.Contacts[i].Email</td>
+                                <td>@Model.Contacts[i].Phone</td>
+                                <td>@mkt</td>
+                                <td>@Model.Contacts[i].ApplicationUser.UserName</td>
+                                <td>@Model.Contacts[i].CIOCircle</td>
+                                <td>@innovationForum</td>
+                                <td>@tac</td>
+                                <td>@Model.Contacts[i].PostalAddress</td>
+                                <td>@Model.Contacts[i].Comments</td>
+                                <td>
+                                    <a href="#" onclick="toggleContactUpdateRow('@Model.Contacts[i].Id', true)" class="btn btn-primary my-btn">Edit</a>
+                                    <button asp-controller="ContactInfo" asp-action="ContactDelete" asp-route-id="@Model.Contacts[i].Id" class="btn btn-danger my-btn">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="13"><a asp-controller="ContactInfo" asp-action="ContactCreate">New Contact</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-around border mt-5" style="background-color: #fff;">
+        <div class="table-responsive w-30 p-3">
+            <form asp-controller="ContactInfo" asp-action="TouchpointUpdate" method="post">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr style="background-color: lightgrey;">
+                            <th scope="col">Date</th>
+                            <th scope="col">Sort of Event</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Attendance</th>
+                            <th scope="col">HP attendance</th>
+                            <th scope="col">Reminder</th>
+                            <th scope="col">Edit / Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Touchpoints.Count; i++)
+                        {
+                            <tr id="touchpointRowUpdate_@Model.Touchpoints[i].Id" style="display: none">
+                                <td><input asp-for="@Model.Touchpoints[i].Date" type="date" /></td>
+                                <td><input asp-for="@Model.Touchpoints[i].SortOfEvent" /></td>
+                                <td><input asp-for="@Model.Touchpoints[i].Description" /></td>
+                                <td><input asp-for="@Model.Touchpoints[i].Contact.FirstName" disabled/></td>
+                                <td><input asp-for="@Model.Touchpoints[i].ApplicationUser.UserName" disabled /></td>
+                                <td><input asp-for="@Model.Touchpoints[i].Reminder" type="date" /></td>
+                                <td>
+                                    <input asp-for="@Model.Touchpoints[i].Id" hidden />
+                                    <input asp-for="@Model.Touchpoints[i].ApplicationUserId" hidden />
+									<input asp-for="@Model.Touchpoints[i].ContactId" hidden />
+                                    <button type="submit" onclick="toggleTouchpointUpdateRow('@Model.Touchpoints[i].Id', false)" class="btn btn-primary my-btn">Update</button>
+                                    <a href="#" onclick="toggleTouchpointUpdateRow('@Model.Touchpoints[i].Id', false)" class="btn btn-secondary my-btn">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr id="touchpointRowRead_@Model.Touchpoints[i].Id">
+                                <td>@Model.Touchpoints[i].Date</td> @* formateren naar date (is standaard een datetime) *@
+                                <td>@Model.Touchpoints[i].SortOfEvent</td>
+                                <td>@Model.Touchpoints[i].Description</td>
+                                <td>@Model.Touchpoints[i].Contact.FirstName</td>
+                                <td>@Model.Touchpoints[i].ApplicationUser.UserName</td>
+                                <td>@Model.Touchpoints[i].Reminder</td> @* formateren naar date (is standaard een datetime) *@
+                                <td>
+                                    <a href="#" onclick="toggleTouchpointUpdateRow('@Model.Touchpoints[i].Id', true)" class="btn btn-primary my-btn">Edit</a>
+                                    <button asp-controller="ContactInfo" asp-action="TouchpointDelete" asp-route-id="@Model.Touchpoints[i].Id" class="btn btn-danger my-btn" style="display: block;">Delete</button>
+                                </td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td colspan="13"><a asp-controller="ContactInfo" asp-action="TouchpointCreate">New Touchpoint</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

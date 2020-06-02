@@ -1,0 +1,71 @@
+﻿@model InsightsViewModel
+
+@{
+	ViewData["Title"] = "Insights";
+}
+
+<div class="container">
+	<h1>Insights</h1>
+
+	<form asp-action="Insights" asp-controller="Home" method="post">
+		<div class="form-group row">
+			<label asp-for="@Model.Client" class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				<input type="text" asp-for="@Model.Client" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label asp-for="@Model.Date" class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				<input type="datetime-local" asp-for="@Model.Date" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label asp-for="@Model.Text" class="col-sm-2 col-form-label"></label>
+			<div class="col-sm-10">
+				<input type="text" asp-for="@Model.Text" class="form-control" />
+			</div>
+		</div>
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+		<br />
+		<div class="form-group row">
+			<div class="col-sm-10">
+				<button class="btn btn-primary">Add Insight</button>
+			</div>
+		</div>
+	</form>
+
+	@if (Model.Insights == null)
+	{
+		<p>There are no insights</p>
+	}
+	else
+	{
+		<div class="border" style="border-radius: 1%; background-color: #fff">
+			<table class="table table-striped" >
+				<thead>
+					<tr>
+						<th scope="col">Client</th>
+						<th scope="col">Date</th>
+						<th scope="col">Text</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var insight in Model.Insights)
+					{
+						<tr>
+							<td>@insight.Client</td>
+							<td>@insight.Date</td>
+							<td>@insight.Text</td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+		</div>
+	}
+	</div>

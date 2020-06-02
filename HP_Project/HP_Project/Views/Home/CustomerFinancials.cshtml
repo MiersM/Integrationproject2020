@@ -1,0 +1,217 @@
+﻿@model CustomerFinancialsViewModel
+
+<div class="container-fluid" style="width: 100%;">
+
+	<!--<div class="container-fluid p-3 my-3 bg-dark text-white" style="height: 100%;">
+			<div type="button" class="btn btn-outline-primary border">Account Manager</div>
+			<div type="button" class="btn btn-outline-primary">Amid 4 klant</div>
+			<div type="button" class="btn btn-outline-primary">Amid 2 klant</div>
+	  </div>-->
+
+	<div class="row-fluid">
+		<div class="d-flex justify-content-center">
+			<div class="col-xs-6 d-flex justify-content-start p-3">
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">Account manager:</div>
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">Annick Verschuren</div>
+				<!--Hiering Gegevens steken-->
+			</div>
+			<div class="col-xs-6 d-flex justify-content-center p-3">
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">Amid 4 Klant:</div>
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">AXA</div>
+				<!--Hiering Gegevens steken-->
+			</div>
+			<div class="col-xs-6 d-flex justify-content-end p-3">
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">Amid 2 klant:</div>
+				<div class="border text-center" style="width: 12em; font-size: 120%; background-color: #ffffff;">AXA</div>
+				<!--Hiering Gegevens steken-->
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="border" style="left: 14.4%; position:relative; background-color: #ffffff; border-radius:1%; width:52%;">
+			<h3>Status for current quarter</h3>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th scope="row">Quota</th>
+						<th scope="row">Country plan</th>
+						<th scope="row">Actuals</th>
+						<th scope="row">SFDC Forecast</th>
+						<th scope="row">SFDC Commit</th>
+						<th scope="row">SFDC Pipeline</th>
+						<th scope="row">SFDC/Quota</th>
+						<th scope="row">Actuals/SFDC</th>
+						<th scope="row">SFDC/plan</th>
+					</tr>
+					<!-- nog ID's -->
+					<tr class="text-center">
+						<td>2.9</td>
+						<td>3.4</td>
+						<td>2.5</td>
+						<td>3.2</td>
+						<td>2.8</td>
+						<td>0.4</td>
+						<td>110%</td>
+						<td>78%</td>
+						<td>94%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="float-left ml-4 mt-1 border" style="background-color: #ffffff; border-radius:1%; float: left; position: relative; left: 14.9%;">
+			<h3>Historical partners</h3>
+			<table class="table table-striped w-100">
+				<tbody>
+					<!-- Nog ID's -->
+					<tr>
+						<th scope="row">1</th>
+						<td scope="row">Dell</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td scope="row">AXA</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td scope="row">Argenta</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="border h-50 mt-2" style="left: 14.5%; position: relative; border-radius:1%;background-color: #ffffff; width:52%;">
+			<h3>Historical and future trend</h3>
+			<button type="button" class="btn btn-primary">All products</button>
+			<button type="button" class="btn btn-primary">Notebooks</button>
+			<button type="button" class="btn btn-primary">Desktops</button>
+			<button type="button" class="btn btn-primary">Mobility</button>
+			<button type="button" class="btn btn-primary">Mobile WS</button>
+			<button type="button" class="btn btn-primary">RPOS</button>
+			<button type="button" class="btn btn-primary">Thin Client</button>
+			<button type="button" class="btn btn-primary">Other</button>
+
+			<table class="table-sm table-striped w-100">
+				<tbody>
+					<tr>
+						<th scope="row"></th>
+
+						<th id="2017Q1">2017Q1</th>
+						<th id="2017Q2">2017Q2</th>
+						<th id="2017Q3">2017Q3</th>
+						<th id="2017Q4">2017Q4</th>
+						@*<th id="2018Q1">2018Q1</th>
+						<th id="2018Q2">2018Q2</th>
+						<th id="2018Q3">2018Q3</th>
+						<th id="2018Q4">2018Q4</th>
+						<th id="2019Q1">2019Q1</th>
+						<th id="2019Q2">2019Q2</th>
+						<th id="2019Q3">2019Q3</th>
+						<th id="2019Q4">2019Q4</th>*@
+					</tr>
+
+					<tr class="text-center">
+						<th>REV (M$)</th>
+						<td id="REV2017Q1">@Model.rev2017Q1</td>
+						<td id="REV2017Q2">@Model.rev2017Q2</td>
+						<td id="REV2017Q3">@Model.rev2017Q3</td>
+						<td id="REV2017Q4">@Model.rev2017Q4</td>
+					</tr>
+					<tr class="text-center">
+						<th>GPM (M$)</th>
+						<td id="GPM2017Q1">@Model.GPM2017Q1</td>
+						<td id="GPM2017Q2">@Model.GPM2017Q2</td>
+						<td id="GPM2017Q3">@Model.GPM2017Q3</td>
+						<td id="GPM2017Q4">@Model.GPM2017Q4</td>
+					</tr>
+					<tr class="text-center">
+						<th>GPM (%)</th>
+						<td id="GPM2017Q1percent">@Model.GPM2017Q1percent</td>
+						<td id="GPM2017Q2percent">@Model.GPM2017Q2percent</td>
+						<td id="GPM2017Q3percent">@Model.GPM2017Q3percent</td>
+						<td id="GPM2017Q4percent">@Model.GPM2017Q4percent</td>
+					</tr>
+					<tr class="text-center">
+						<th>SFDC pipeline (M$)</th>
+						<td id="SFDCPQ115"></td>
+						<td id="SFDCPQ215"></td>
+						<td id="SFDCPQ315"></td>
+						<td id="SFDCPQ415"></td>
+						<td id="SFDCPQ116"></td>
+						<td id="SFDCPQ216"></td>
+						<td id="SFDCPQ316"></td>
+						<td id="SFDCPQ416"></td>
+						<td id="SFDCPQ117"></td>
+						<td id="SFDCPQ217">38.0</td>
+						<td id="SFDCPQ317">34.0</td>
+						<td id="SFDCPQ417">32.0</td>
+						<td id="SFDCPQ118">27.0</td>
+						<td id="SFDCPQ218">22.0</td>
+						<td id="SFDCPQ318">16.0</td>
+						<td id="SFDCPQ418">15.0</td>
+					</tr>
+					<tr class="text-center">
+						<th>SFDC commit (M$)</th>
+						<td id="SFDCCQ115"></td>
+						<td id="SFDCCQ215"></td>
+						<td id="SFDCCQ315"></td>
+						<td id="SFDCCQ415"></td>
+						<td id="SFDCCQ116"></td>
+						<td id="SFDCCQ216"></td>
+						<td id="SFDCCQ316"></td>
+						<td id="SFDCCQ416"></td>
+						<td id="SFDCCQ117"></td>
+						<td id="SFDCCQ217">30.0</td>
+						<td id="SFDCCQ317">12.0</td>
+						<td id="SFDCCQ417">10.0</td>
+						<td id="SFDCCQ118">9.0</td>
+						<td id="SFDCCQ218">6.0</td>
+						<td id="SFDCCQ318">5.0</td>
+						<td id="SFDCCQ418">2.0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="float-right border mt-2" style="left: 16.2%; position: relative; background-color: #ffffff; border-radius:1%">
+			<h3>Profiling Summary</h3>
+			<table class="table-striped w-100">
+				<tbody>
+					<tr>
+						<th scope="row"></th>
+						<th scope="row">FQ217</th>
+					</tr>
+					<tr>
+						<th>TAM/Quarters (M$)</th>
+						<td>16.2</td>
+					</tr>
+					<tr>
+						<th>SFDC pipeline (M$)</th>
+						<td>6.2</td>
+					</tr>
+					<tr>
+						<th>Share-Of-Wallet (%)</th>
+						<td>38%</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<div class="row mt-1" style=" height: 25em; position: relative;">
+
+		<div class="w-50 h-100 border" style="left: 8%; position: relative; border-radius:1%">
+			<div class=" w-100 h-100" id="chartContainer"></div>
+		</div>
+		<div class="border h-100" style="left: 10%; position: relative; width: 15%; border-radius:1%">
+			<div class="border w-100 h-100" id="chartContainer1"></div>
+		</div>
+		<div class="border h-100" style="left: 12%; position: relative; width: 15%; border-radius:1%">
+			<div class="border w-100 h-100" id="chartContainer2"></div>
+		</div>
+
+	</div>
+</div>

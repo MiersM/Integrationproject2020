@@ -1,0 +1,322 @@
+﻿@using static System.Math
+@model HomeIndexViewModel
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+    <form asp-controller="Home" asp-action="Index" method="post">
+        <div class="form-group row">
+            @*<label asp-for="apolloRow.Id" class="col-sm-2 col-form-label"></label>*@
+			<div class="col-sm-10">
+				<select asp-for="apolloRow.Id" asp-items="Model.ApolloFilterItems" class="custom-select mr-sm-2">
+					<option value="">Please Select</option>
+				</select>
+				<span asp-validation-for="apolloRow.Id" class="text-danger"></span>
+			</div>
+			<button type="submit" class="btn btn-primary col-sm-2">Submit</button>
+        </div>
+    </form>
+
+	<div class="text-center m-2">
+		<a asp-action="Edit" asp-controller="Home" asp-route-id="@Model.apolloRow.Id" class="btn btn-warning">Update</a>
+		<button class="btn btn-danger block" data-toggle="modal" data-target="#deleteModal-@Model.apolloRow.Id">Delete</button>
+	</div>
+	<div class="row">
+		
+		<div class="float-left customerProfileCol">
+			<div class="border customerProfileColDiv">
+				<table class="table table-borderless table-sm">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Customer Name: </td>
+							<td id="mycustomer_customer_name" class="customerProfileTableAlignLeft">@Model.apolloRow.AccountSTName</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">AMID 2</td>
+							<td id="mycustomer_admid_2" class="customerProfileTableAlignLeft">@Model.apolloRow.TaxIdentifier</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">AMID 4 Name</td>
+							<td id="mycustomer_amid_4_name" class="customerProfileTableAlignLeft">@Model.apolloRow.Name</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">AMID 4</td>
+							<td id="mycustomer_amid_4" class="customerProfileTableAlignLeft">AXA275477800</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Segment</td>
+							<td id="mycustomer_segment" class="customerProfileTableAlignLeft">@Model.apolloRow.IndustrySegment</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Subsegment</td>
+							<td id="mycustomer_subsegment" class="customerProfileTableAlignLeft">Corporate</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Vertical Market</td>
+							<td id="mycustomer_vertical_market" class="customerProfileTableAlignLeft">@Model.apolloRow.IndustryVertical</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-borderless table-sm">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight"># Employees in BeLux</td>
+							<td class="customerProfileTableAlignLeft">@Model.clientEmployee.AmountEmployee</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight"># pc's in BeLux</td>
+							<td class="customerProfileTableAlignLeft">@Model.territoryCompany.AmountPc</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">RAD value ($/emp/year)</td>
+							<td class="customerProfileTableAlignLeft">@Model.clientEmployee.ITspendByEmployee</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">IT spend (k$/year)</td>
+							<td class="customerProfileTableAlignLeft">@Model.clientEmployee.ITspendByYear</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">HP revenue (k$/year)</td>
+							<td class="customerProfileTableAlignLeft">@Math.Round(Model.revenueActuals.RevKSadj)</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Share-of-Wallet</td>
+							<td class="customerProfileTableAlignLeft">@Model.rAD.HpSow%</td> <!-- waarschijnlijk niet het juiste gegeven -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight"># Employees in RAD</td>
+							<td class="customerProfileTableAlignLeft">@Model.rAD.NumberOfEmployees</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">IT spend in RAD</td>
+							<td class="customerProfileTableAlignLeft">1,200</tdclass="customerProfileTableAlignLeft">  <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">HP revenue in RAD</td>
+							<td class="customerProfileTableAlignLeft">240</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Share-of-Wallet in RAD</td>
+							<td class="customerProfileTableAlignLeft">@Model.rAD.HpSow%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="float-left" style="width: 25%; left: 13%; position: relative;">
+			<div class="border customerProfileColDiv">
+				<table class="table table-sm table-borderless">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Current partner for PC's</td>
+							<td class="customerProfileTableAlignLeft">RealDolmen, Getronix</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Other Partners present</td>
+							<td class="customerProfileTableAlignLeft">ATOS</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Comments about other partners</td>
+							<td class="customerProfileTableAlignLeft">Not happy about Real Dolmen</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Leasing?</td>
+							<td class="customerProfileTableAlignLeft">Yes, via CHG</td> <!-- niet te vinden in mockdata -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-sm table-borderless">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Global type</td>
+							<td class="customerProfileTableAlignLeft">Local</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Lead Country</td>
+							<td class="customerProfileTableAlignLeft">Belgium(5000)</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Other Countries</td>
+							<td class="customerProfileTableAlignLeft">Eng(1000)</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Other Countries</td>
+							<td class="customerProfileTableAlignLeft">Fra(500)</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Other Countries</td>
+							<td class="customerProfileTableAlignLeft">Eng(500)</td> <!-- niet te vinden in mockdata -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-sm table-borderless" style="text-align: left;">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Account Manager</td>
+							<td class="customerProfileTableAlignLeft">Annick Verschueren</td> <!-- users nog aanmaken -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Inside sales</td>
+							<td class="customerProfileTableAlignLeft">Alexandra Manole</td> <!-- users nog aanmaken -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-sm table-borderless" style="text-align: left;">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Are we in contact?</td>
+							<td>Yes</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Are we selling?</td>
+							<td class="customerProfileTableAlignLeft">No</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Current partner for PC's</td>
+							<td class="customerProfileTableAlignLeft">RealDolmen, Getronix</td> <!-- niet te vinden in mockdata -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-sm table-borderless">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight">Fullfillment model</td>
+							<td class="customerProfileTableAlignLeft">RDI</td> <!-- niet te vinden in mockdata -->
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight">Fullfillment model comment</td>
+							<td class="customerProfileTableAlignLeft">Wants direct</td> <!-- niet te vinden in mockdata -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="customerProfileCol2">
+			<div class="border customerProfileDivCircle">
+				<div id="donutchart" class="maxLayOut"></div>
+			</div>
+
+			<div class="border mt-4 customerProfileColDiv">
+				<table class="table table-borderless table-sm">
+					<tbody>
+						<tr>
+							<td class="customerProfileTableAlignRight2">CIO circle</td>
+							<td id="dataElementDrop0" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">Exec sponsor : Koen Van Beneden​</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Big Fish hunting</td>
+							<td id="dataElementDrop1" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">Exec sponsor : Koen Van Beneden​</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Hunting with the channel</td>
+							<td id="dataElementDrop2" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">With Econocom</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Have we discussed x3?</td>
+							<td id="dataElementDrop3" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">Not interested</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Have we discussed premium?</td>
+							<td id="dataElementDrop4" class="customerProfileTableAlignCenter">No</td>
+							<td class="customerProfileTableAlignLeft">To be planned</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Value potential?</td>
+							<td id="dataElementDrop5" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">CAD, 3D,...​</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Have we discussed value?</td>
+							<td id="dataElementDrop6" class="customerProfileTableAlignCenter">Yes</td>
+							<td class="customerProfileTableAlignLeft">follow up​</td>
+						</tr>
+						<tr>
+							<td class="customerProfileTableAlignRight2">Have we discussed DaaS?</td>
+							<td id="dataElementDrop7" class="customerProfileTableAlignCenter">No</td>
+							<td class="customerProfileTableAlignLeft">Not interested​</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+
+@* Delete modal *@
+<div class="modal fade" id="deleteModal-@Model.apolloRow.Id" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteModalLabel">Delete @Model.apolloRow.Name ?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				This action cannot be undone!
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<form asp-action="Delete" asp-controller="Home" asp-route-id="@Model.apolloRow.Id" method="post">
+					<button type="submit" class="btn btn-danger">Confirm</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	@{
+		var apple = Model.installBase.Apple;
+		var samsung = Model.installBase.Samsung;
+		var msi = Model.installBase.Msi;
+		var hp = Model.installBase.Hp;
+		var dell = Model.installBase.Dell;
+
+	}
+
+	google.charts.load("current", { packages: ["corechart"] });
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Task', 'Hours per Day'], //??
+			['Dell', @dell],
+			['Apple', @apple],
+			['Hp', @hp],
+			['Samsung', @samsung],
+			['Msi', @msi]
+		]);
+
+		var options = {
+			title: 'Notebooks',
+			pieHole: 0.4,
+		};
+
+		// instantieren en tekenen
+		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+		chart.draw(data, options);
+	}
+
+</script>

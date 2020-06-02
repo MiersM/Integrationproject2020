@@ -1,0 +1,104 @@
+﻿@model ContactCreateViewModel
+
+<form asp-controller="ContactInfo" asp-action="ContactCreate" method="post" class="mt-3" enctype="multipart/form-data">
+    <div class="form-group row">
+        <label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Role" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Role" class="form-control" />
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mkt" class="col-sm-2 col-form-label">Mkt</label>
+        <div class="col-sm-10 checkbox">
+            <input asp-for="Mkt" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="ApplicationUser" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="ApplicationUserId" hidden />
+            <input asp-for="ApplicationUser" class="form-control" disabled />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="CIOCircle" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="CIOCircle" class="form-control" />
+            <span asp-validation-for="CIOCircle" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="InnovationForum" class="col-sm-2 col-form-label">InnovationForum</label>
+        <div class="col-sm-10 checkbox">
+            <input asp-for="InnovationForum" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TAC" class="col-sm-2 col-form-label">TAC</label>
+        <div class="col-sm-10 checkbox">
+            <input asp-for="TAC" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="PostalAddress" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="PostalAddress" class="form-control" />
+            <span asp-validation-for="PostalAddress" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Comments" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Comments" class="form-control" />
+            <span asp-validation-for="Comments" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-success">Create</button>
+            <a asp-controller="ContactInfo" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</form>
